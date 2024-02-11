@@ -10,7 +10,7 @@
 <h1>How to change Ransom Note?</h1>
 <p>Go to "encrypter.py" and the first line you should see this:</p>
 ```python
-instructions = "bring me thy bitcoin"
+instructions = "Bring me thy bitcoin"
 ```
 <p>The part in the quetation marks, (Bring me thy bitcoin) is the part you change. Doing this changes the text in the file that the encrypter drops. You can type \\n in the text to start a new line.</p>
 <h1>What does TeeHee.py do?</h1>
